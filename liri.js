@@ -1,9 +1,14 @@
 const movieScript = require('./movies.js')
 const spotify = require('node-spotify-api')
 const moment = require('moment')
-const dotenv = require('dotenv')
+const dotenv = require("dotenv").config();
+const keys = require("./keys.js");
 const axios = require('axios')
 const inquirer = require('inquirer')
+
+// let spotifyKey = new Spotify(keys.spotify);
+
+
 
 
 inquirer.prompt([
@@ -38,9 +43,17 @@ inquirer.prompt([
             axios.get("http://www.omdbapi.com/?t=" + movieTitle + "=&plot=short&apikey=f5d44a54").then(
                 function (response) {
 
-                    console.log(response.data.Plot);
+                    // console.log(response.data)
 
-                    // console.log("The movie's rating is: " + response.data.imdbRating);
+                    console.log(response.data.Title);
+                    console.log("Year Released: " + response.data.Year);
+                    console.log("IMDB Rating: " + response.data.Ratings[0].Value)
+                    console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value)
+                    console.log("Produced in: " + response.data.Country);
+                    console.log("Language: " + response.data.Language);
+                    console.log("Plot: " + response.data.Plot);
+                    console.log("Actors: " + response.data.Actors);
+
                 })
                 .catch(function (error) {
                     if (error.response) {
@@ -81,10 +94,10 @@ inquirer.prompt([
     // End of Movies
     // ============================================================================================================================================
     else if (responses.selectTask === 2) {
-        console.log("You have chosen music")
+        console.log("Under contruction: music")
     }
     else {
-        console.log("You have chosen bands")
+        console.log("Under contruction: bands")
     }
 
 
