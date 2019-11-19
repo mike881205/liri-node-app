@@ -1,40 +1,113 @@
+const movieScript = require('./movies.js')
 const spotify = require('node-spotify-api')
 const moment = require('moment')
 const dotenv = require('dotenv')
 const axios = require('axios')
+const inquirer = require('inquirer')
 
 
+inquirer.prompt([
 
-let movies = ["Star Trek", "Clueless", "Big Hero 6"]
+    {
+        type: "list",
+        name: "selectTask",
+        message: "What can I help you with?",
+        choices: [{ name: "Search Movies", value: 1 }, { name: "Search Music", value: 2 }, { name: "Search Bands in Town", value: 3 }]
+    }
 
-for (i = 0; i < movies.length; i++) {
+]).then(function (responses) {
 
-    let movieTitle = movies[i].split(' ').join('+');
+    // ============================================================================================================================================
+    // Movies (OMDB)
+    // ============================================================================================================================================
 
-    console.log(movieTitle)
+    if (responses.selectTask === 1) {
 
-    axios.get("http://www.omdbapi.com/?t=" + movieTitle + "=&plot=short&apikey=f5d44a54").then(
-        function (response) {
-            console.log("The movie's rating is: " + response.data.imdbRating);
-        })
-        .catch(function (error) {
-            if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log("---------------Data---------------");
-                console.log(error.response.data);
-                console.log("---------------Status---------------");
-                console.log(error.response.status);
-                console.log("---------------Status---------------");
-                console.log(error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log("Error", error.message);
+        console.log("You have chosen movies")
+
+        inquirer.prompt(
+            {
+                type: "input",
+                name: "movie",
+                message: "Please enter a movie:"
             }
-            console.log(error.config);
-        });
-}
+        ).then(function (movieChoice) {
+
+            let movieTitle = movieChoice.movie.split(' ').join('+');
+
+            axios.get("http://www.omdbapi.com/?t=" + movieTitle + "=&plot=short&apikey=f5d44a54").then(
+                function (response) {
+
+                    console.log(response.data.Plot);
+
+                    // console.log("The movie's rating is: " + response.data.imdbRating);
+                })
+                .catch(function (error) {
+                    if (error.response) {
+                        // The request was made and the server responded with a status code
+                        // that falls out of the range of 2xx
+                        console.log("---------------Data---------------");
+                        console.log(error.response.data);
+                        console.log("---------------Status---------------");
+                        console.log(error.response.status);
+                        console.log("---------------Status---------------");
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                        console.log(error.request);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log("Error", error.message);
+                    }
+                    console.log(error.config);
+                });
+
+        })
+
+        // fs.readFile(movieScript, function(error) {
+
+        //     // If the code experiences any errors it will log the error to the console.
+        //     if (error) {
+        //         return console.log(error);
+        //     }
+
+        //     // We will then print the contents of data
+
+        // });
+
+    }
+    // ============================================================================================================================================
+    // End of Movies
+    // ============================================================================================================================================
+    else if (responses.selectTask === 2) {
+        console.log("You have chosen music")
+    }
+    else {
+        console.log("You have chosen bands")
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})
