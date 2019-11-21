@@ -1,9 +1,9 @@
 require("dotenv").config();
-const keys = require("./keys.js");
 const axios = require("axios")
 const moment = require("moment")
-// const Spotify = require("node-spotify-api")
-// const spotify = new Spotify(keys.spotify);
+const keys = require("./keys")
+const Spotify = require("node-spotify-api")
+const spotify = new Spotify(keys.spotify);
 
 
 const fs = require('fs')
@@ -27,9 +27,36 @@ switch (command) {
         doWhatItSays()
         break;
     case "spotify-this-song":
-        console.log("under construction: songs")
+        spotifyThisSong();
         break;
 }
+
+function spotifyThisSong() {
+
+    let songTitle = []
+
+    for (let i = 3; i < process.argv.length; i++) {
+
+        let song = process.argv[i]
+
+        songTitle.push(song)
+
+    }
+
+    let joinedSong = songTitle.join(" ")
+
+    spotify.search({ type: 'track', query: joinedSong, limit: 5 }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+
+        console.log(data.tracks.items[0].artists[0].name);
+        
+    });
+
+}
+
+
 
 // ================================================================
 // "do-what-it-says"
