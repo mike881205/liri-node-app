@@ -1,12 +1,10 @@
-// const movieScript = require('./movies.js')
-// const spotify = require('node-spotify-api')
-// const moment = require('moment')
-// const dotenv = require("dotenv").config();
-// const keys = require("./keys.js");
-// let spotifyKey = new Spotify(keys.spotify);
-// let bandsInTown = require('bandsintown')
+require("dotenv").config();
+const axios = require("axios")
+const moment = require("moment")
+const Spotify = require("node-spotify-api")
+let keys = require("./keys.js");
 
-const axios = require('axios')
+
 
 let command = process.argv[2]
 
@@ -14,24 +12,36 @@ switch (command) {
     case "movie-this":
         movieThis();
         break;
-    // case "do-what-it-says":
-    //     doWhatItSays();
-    //     break;
-    // case "spotify-this-song":
-    //     spotifyThisSong();
-    //     break;
+    case "do-what-it-says":
+        console.log("under construction: commands")
+        break;
+    case "spotify-this-song":
+        console.log("under construction: songs")
+        break;
     case "concert-this":
         concertThis();
         break
 }
 
+// ================================================================================================================
+// Command
+// ================================================================================================================
+
 function doWhatItSays() {
     console.log(process.argv)
 }
 
+// ================================================================================================================
+// Songs
+// ================================================================================================================
+
 function spotifyThisSong() {
-    console.log(process.argv)
-}
+    
+
+
+// ================================================================================================================
+// Concerts
+// ================================================================================================================
 
 function concertThis() {
 
@@ -48,9 +58,21 @@ function concertThis() {
     let joinedBand = bandInput.join("%20")
 
     axios.get("https://rest.bandsintown.com/artists/" + joinedBand + "/events?app_id=codingbootcamp").then(
+
         function (response) {
 
-            console.log("Venue: " + response.venue.name);
+            console.log("Upcoming Concerts")
+
+            console.log(" ")
+
+            for (let i = 0; i < response.data.length; i++) {
+
+                console.log("Venue: " + response.data[i].venue.name);
+                console.log("Location: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
+                console.log("Date: " + response.data[i].datetime);
+                console.log(" ")
+
+            }
 
         })
         .catch(function (error) {
@@ -76,7 +98,9 @@ function concertThis() {
 
 }
 
-
+// ================================================================================================================
+// Movies
+// ================================================================================================================
 function movieThis() {
 
     let movieTitle = [];
