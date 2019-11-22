@@ -121,6 +121,5 @@ function movieThis() {
 
 
 module.exports = {
-    movieThisMain: movieThis(),
-    // movieThisText: doWhatItSaysMovie()
+    movieThis: movieThis(),
 }

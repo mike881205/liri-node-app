@@ -1,11 +1,5 @@
 require("dotenv").config();
 const axios = require("axios")
-const moment = require("moment")
-const keys = require("./keys")
-const Spotify = require("node-spotify-api")
-const spotify = new Spotify(keys.spotify);
-
-
 const fs = require('fs')
 
 // ================================================================
@@ -16,47 +10,21 @@ let command = process.argv[2]
 
 switch (command) {
     case "movie-this":
-        const movieThisFile = require("./movieThis")
-        console.log(movieThisFile.movieThisMain)
+        const movieThisFile = require("./function-files/movieThis.js")
+        movieThisFile.movieThis
         break;
     case "concert-this":
-        const concertThisFile = require("./concertThis")
-        console.log(concertThisFile.concertThisMain)
+        const concertThisFile = require("./function-files/concertThis.js")
+        concertThisFile.concertThis
         break
+    case "spotify-this-song":
+        const spotifyThisFile = require("./function-files/spotifyThis.js")
+        spotifyThisFile.spotifyThis
+        break;
     case "do-what-it-says":
         doWhatItSays()
         break;
-    case "spotify-this-song":
-        spotifyThisSong();
-        break;
 }
-
-function spotifyThisSong() {
-
-    let songTitle = []
-
-    for (let i = 3; i < process.argv.length; i++) {
-
-        let song = process.argv[i]
-
-        songTitle.push(song)
-
-    }
-
-    let joinedSong = songTitle.join(" ")
-
-    spotify.search({ type: 'track', query: joinedSong, limit: 5 }, function (err, data) {
-        if (err) {
-            return console.log('Error occurred: ' + err);
-        }
-
-        console.log(data.tracks.items[0].artists[0].name);
-        
-    });
-
-}
-
-
 
 // ================================================================
 // "do-what-it-says"
