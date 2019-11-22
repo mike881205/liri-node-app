@@ -1,5 +1,6 @@
 const fs = require('fs')
 const axios = require("axios")
+const moment = require("moment")
 
 function concertThisText() {
 
@@ -22,17 +23,17 @@ function concertThisText() {
 
                 function (response) {
 
-                    console.log("Upcoming Concerts")
-
                     console.log(" ")
+                    console.log("Upcoming Tour Dates")
 
-                    for (let i = 0; i < response.data.length; i++) {
+                    for (let i = 0; i < 5; i++) {
 
+                        console.log(" ")
                         console.log("Venue: " + response.data[i].venue.name);
                         console.log("Location: " + response.data[i].venue.city + ", " + response.data[i].venue.country);
-                        console.log("Date: " + response.data[i].datetime);
+                        console.log("Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY"));
                         console.log(" ")
-
+                        console.log("//======//")
                     }
 
                 })
