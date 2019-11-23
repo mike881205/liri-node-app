@@ -48,7 +48,9 @@ The command varibale is passed into a switch statement that runs as follows:
 4. If the command is 'do-what-it-says'
     * Require the doWhatItSays.js file and call the function within the file
 
-# movieThis.js file function
+# movieThis.js file function 
+
+* See movieThis_Function.mp4 in screen-recordings folder for demonstration
 
 The function within the movieThis.js file operates as follows:
 
@@ -63,6 +65,10 @@ The function within the movieThis.js file operates as follows:
 
 # concertThis.js file function
 
+* See concertThis_Function.mp4 in screen-recordings folder for demonstration
+
+The function within the concertThis.js file operates as follows:
+
 * If the user enters a search term
     1. Loop through all of the words entered of the search term
     2. Push all of the words in the search term to an array as separate items and join them using "%20" to output the search format required for the axios call
@@ -73,6 +79,10 @@ The function within the movieThis.js file operates as follows:
         * Using axios to access the BandsInTown API, the same results are printed for the band 'Every Time I Die'
 
 # spotifyThis.js file function
+
+* See spotifyThis_Function.mp4 in screen-recordings folder for demonstration
+
+The function within the spotifyThis.js file operates as follows:
 
 * If the user enters a search term
     1. Loop through all of the words entered of the search term
@@ -85,10 +95,12 @@ The function within the movieThis.js file operates as follows:
 
 # doWhatItSays.js file function
 
+* See doWhatItSays_Function.mp4 in screen-recordings folder for demonstration
+
 1. The main switch statement for the doWhatItSays function operates in the same way that the main liri switch statement operates *except* the statement is within a call to the file system to read the contents of the 'random.txt' file
     * There are 3 different sets of text inside the 'random.txt' file and are formatted as follows:
         * spotify-this-song,I Want It That Way
-        * concert-this,Tenacious D
+        * concert-this,Tenacious Slipknot
         * movie-this,The Big Lebowski
     * The command and search term are split by "," and the command is passed into a variable - "command"
 
