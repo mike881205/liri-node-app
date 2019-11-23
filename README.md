@@ -107,4 +107,21 @@ The function within the spotifyThis.js file operates as follows:
 2. The functions called for each case of the swtich statemetn also operate in the same way that the other 3 command functions inside the main liri switch statement with the same exception that the logic is within a call to the file system to read the contents of the 'random.txt' file and pass the search term into the function
 
 
+## GitHub Repo
+
+[GitHUb Repo](https://github.com/mike881205/liri-node-app)
+
+## Technologies used within the App
+
+spotify-node-API
+moment
+axios
+OMDB API
+BandsInTown API
+Spotify API
+
+## Notes
+
+I am responsbile for creating all logic within all files of this app
+
 
