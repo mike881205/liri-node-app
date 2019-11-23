@@ -122,6 +122,6 @@ The function within the spotifyThis.js file operates as follows:
 
 ## Notes
 
-* I am responsbile for creating all logic within all files of this app
+* I am responsbile for creating all logic and writing all code within all files of this app
 
 
