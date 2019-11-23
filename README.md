@@ -55,7 +55,7 @@ The command varibale is passed into a switch statement that runs as follows:
 The function within the movieThis.js file operates as follows:
 
 * If the user enters a search term
-    1. Loop through all of the words entered of the search term
+    1. Loop through all of the words entered for the search term
     2. Push all of the words in the search term to an array as separate items and join them using "+" to output the search format required for the axios call
     3. Using axios to access the OMDB API, the joined array items are passed into the search URL, and the following results are printed to the terminal:
         * Movie title, year released, IMDB rating, Rotten Tomatoes rating, Production Language, Plot info, & Actors.
@@ -70,7 +70,7 @@ The function within the movieThis.js file operates as follows:
 The function within the concertThis.js file operates as follows:
 
 * If the user enters a search term
-    1. Loop through all of the words entered of the search term
+    1. Loop through all of the words entered for the search term
     2. Push all of the words in the search term to an array as separate items and join them using "%20" to output the search format required for the axios call
     3. Using axios to access the BandsInTown API, the joined array items are passed into the search URL, and the following results are printed to the terminal:
         * Venue Name, Venue Location, Date of concert at venue
@@ -85,7 +85,7 @@ The function within the concertThis.js file operates as follows:
 The function within the spotifyThis.js file operates as follows:
 
 * If the user enters a search term
-    1. Loop through all of the words entered of the search term
+    1. Loop through all of the words entered for the search term
     2. Push all of the words in the search term to an array as separate items and join them using spaces between words to output the search format required for the Spotify API call
     3. Using the spotify node API to access the spotify API, the joined array items are passed into the search query, and the following results are printed to the terminal:
         * Artist(s), song name, preview link via spotify, album the song is on
@@ -113,15 +113,15 @@ The function within the spotifyThis.js file operates as follows:
 
 ## Technologies used within the App
 
-spotify-node-API
-moment
-axios
-OMDB API
-BandsInTown API
-Spotify API
+* spotify-node-API
+* moment
+* axios
+* OMDB API
+* BandsInTown API
+* Spotify API
 
 ## Notes
 
-I am responsbile for creating all logic within all files of this app
+* I am responsbile for creating all logic within all files of this app
 
 
